@@ -1,0 +1,19 @@
+c:\users\sergeychi\documents\visual studio 2012\Projects\Task1_yield\Task1_yield\bin\Debug\Task1_yield.exe.config
+G:\C_Sharp\Task1_yield\Task1_yield\bin\Debug\Task1_yield.exe.config
+G:\C_Sharp\Task1_yield\Task1_yield\bin\Debug\Task1_yield.exe
+G:\C_Sharp\Task1_yield\Task1_yield\bin\Debug\Task1_yield.pdb
+G:\C_Sharp\Task1_yield\Task1_yield\obj\Debug\Task1_yield.csprojResolveAssemblyReference.cache
+G:\C_Sharp\Task1_yield\Task1_yield\obj\Debug\Task1_yield.Form1.resources
+G:\C_Sharp\Task1_yield\Task1_yield\obj\Debug\Task1_yield.Properties.Resources.resources
+G:\C_Sharp\Task1_yield\Task1_yield\obj\Debug\Task1_yield.csproj.GenerateResource.Cache
+G:\C_Sharp\Task1_yield\Task1_yield\obj\Debug\Task1_yield.exe
+G:\C_Sharp\Task1_yield\Task1_yield\obj\Debug\Task1_yield.pdb
+O:\C_Sharp\Task1_yield\Task1_yield\bin\Debug\Task1_yield.exe.config
+O:\C_Sharp\Task1_yield\Task1_yield\obj\Debug\Task1_yield.exe
+O:\C_Sharp\Task1_yield\Task1_yield\obj\Debug\Task1_yield.pdb
+O:\C_Sharp\Task1_yield\Task1_yield\bin\Debug\Task1_yield.exe
+O:\C_Sharp\Task1_yield\Task1_yield\bin\Debug\Task1_yield.pdb
+O:\C_Sharp\Task1_yield\Task1_yield\obj\Debug\Task1_yield.csprojResolveAssemblyReference.cache
+O:\C_Sharp\Task1_yield\Task1_yield\obj\Debug\Task1_yield.Form1.resources
+O:\C_Sharp\Task1_yield\Task1_yield\obj\Debug\Task1_yield.Properties.Resources.resources
+O:\C_Sharp\Task1_yield\Task1_yield\obj\Debug\Task1_yield.csproj.GenerateResource.Cache
