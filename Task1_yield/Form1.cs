@@ -8,7 +8,8 @@ namespace Task1_yield
 {
     public partial class Form1 : Form
     {
-        private DateTime _a, _b;
+        //FIXED -> -a,b / +_startDate, _endDate
+        private DateTime _startDate, _endDate;
 
         public Form1()
         {
@@ -20,57 +21,57 @@ namespace Task1_yield
             //пытаемся конвертнуть текст из текстбоксов в переменные DateTime
             try
             {
-                _a = Convert.ToDateTime(textBoxA.Text);
-                _b = Convert.ToDateTime(textBoxB.Text);
+                _startDate = Convert.ToDateTime(textBoxA.Text);
+                _endDate = Convert.ToDateTime(textBoxB.Text);
             }
-            //другого эксепшена не смог добиться, было предположение перегрузить(ArgumentOutOfRangeException),
-            //но не получилось придумать кейс - год с 0001 работает, 9999 тоже
             //FIXED - более корректная и полная по инфе обработка исключения
             catch (FormatException e)
             {
-                var errorMessage = e.Message + Environment.NewLine + Environment.NewLine
-                                   + e.StackTrace + Environment.NewLine + Environment.NewLine
-                                   + e.Source + Environment.NewLine
-                                   + e.Data;
-                MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK);
+                var errorMessage = e.Message;
+                // оставил для себя комментом для дальнейшего изучения, что ещё можно снимать с эксепшенов
+                // + Environment.NewLine + Environment.NewLine
+                //                   + e.StackTrace + Environment.NewLine + Environment.NewLine
+                //                   + e.Source + Environment.NewLine
+                //                   + e.Data;
+                //FIXED: +MessageBoxIcon.Error
+                MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void button_Evaluate_Click(object sender, EventArgs e)
         {
-            richTextBox_Result.Text = "";
-
+            //Fixed my poor code style -> -"" / +String.Empty
+            richTextBox_Result.Text = string.Empty;
+            //FIXED: +resultText
+            var resultText = string.Empty;
             to_Date_Time();
-            //if (Range(a, b).Count() >=1) //слишком тяжёлая операция на большой дистанции, а .First() крэшит при отсутствии элемента, пока не вижу иного способа
-            //FIXED
-            if (Range(_a, _b).FirstOrDefault() != default(DateTime)
-            ) //Прозрел на решение, проблема проверки на непустоту первого значения решена
-                foreach (var dta in Range(_a, _b))
-                    richTextBox_Result.Text += dta.ToString("D", new CultureInfo("en-US")) + Environment.NewLine;
+            //FIXED before
+            if (Range(_startDate, _endDate).FirstOrDefault() != default(DateTime))
+                foreach (var dta in Range(_startDate, _endDate))
+                    //FIXED -> -new System.Globalization.CultureInfo("en-US") ) / +CultureInfo.InvariantCulture
+                    resultText += dta.ToString("D", CultureInfo.InvariantCulture) + Environment.NewLine;
             else
-                richTextBox_Result.Text = "There are no dates between";
+                resultText = "There are no dates between";
+
+            richTextBox_Result.Text = resultText;
         }
 
-        //требуемый метод, можно и сокращённо т.к. в using есть 
-        //IEnumerable<DateTime> Range(DateTime first, DateTime second)
-        //внутри требуемые yield
-        public static IEnumerable<DateTime> Range(DateTime first, DateTime second)
+        //внутри требуемый yield
+        //FIXED: +startDate, endDate
+        public static IEnumerable<DateTime> Range(DateTime startDate, DateTime endDate)
         {
-            TimeSpan Difference;
-            DateTime result;
-
-            if (second > first.AddDays(1))
+            if (endDate > startDate.AddDays(1))
             {
-                Difference = second - first;
-                for (var i = 1; i < Difference.Days; i++)
-                {
-                    result = first.AddDays(i);
-                    yield return result;
-                }
+                //FIXED: cycle 'for'
+                for (var d = startDate.AddDays(1); d < endDate; d = d.AddDays(1))
+                    yield return d;
             }
             else
             {
-                MessageBox.Show("First date must be less, than second", "Error", MessageBoxButtons.OK);
+                //FIXED: +argEx
+                var argEx = new ArgumentException("Start date must be less, than end");
+                MessageBox.Show(argEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw argEx;
             }
         }
     }
